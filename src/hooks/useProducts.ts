@@ -3,7 +3,7 @@ import type { ProductResponse } from "../types/product";
 
 export const useProductss = ({
   maxItem,
-  pageNo,
+  pageNo =1,
   searchInput,
 }: {
   pageNo?: number;
@@ -18,7 +18,7 @@ export const useProductss = ({
     try {
       setisLoading(true);
       const response = await fetch(
-        `https://dummyjson.com/products/search?q=${searchInput}&limit=${maxItem ?? 10}&skip=10`,
+        `https://dummyjson.com/products/search?q=${searchInput}&limit=${maxItem ?? 10}&skip=${pageNo * 10}`,
       );
 
       const products: ProductResponse = await response.json();

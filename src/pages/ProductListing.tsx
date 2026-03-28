@@ -7,9 +7,11 @@ import type { Product } from "../types/product";
 import { useMemo, useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 import SearchBar from "../components/SearchBar";
+import Pagintion from "../components/common/Pagintion";
 
 const ProductListing = () => {
   const [userInput, setUserInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const debouncedInput = useDebounce(userInput);
 
@@ -21,16 +23,10 @@ const ProductListing = () => {
     isLoading: isProductLoading,
   } = useProductss({
     searchInput: debouncedInput,
+    pageNo: currentPage,
   });
 
-  // const filteredProducts = useMemo(() => {
-
-  //       if(productData?.products && productData.products.length > 0) {
-  //        return productData.products.filter((data) => data.title === 'debouncedInput');
-  //       }
-
-  //       return productData?.products;
-  // }, [debouncedInput])
+  const totalPages = Math.ceil((productData?.total as number) / 10);
 
   console.log(
     productData?.products.filter(
@@ -51,7 +47,7 @@ const ProductListing = () => {
     );
   }
 
-  if (isLoading && isProductLoading) {
+  if (isLoading || isProductLoading) {
     return (
       <LayoutWrapper>
         <div>Loading..</div>
@@ -88,6 +84,16 @@ const ProductListing = () => {
             No Products found
           </div>
         )}
+
+        {/* pagination */}
+
+        <div className="">
+          <Pagintion
+            totalpages={totalPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </div>
     </LayoutWrapper>
   );
