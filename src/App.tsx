@@ -1,7 +1,6 @@
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import ProductListing from "./pages/ProductListing";
-import LayoutWrapper from "./components/common/LayoutWrapper";
 
 function App() {
   return (

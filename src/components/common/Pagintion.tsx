@@ -1,4 +1,4 @@
-import React, { type Dispatch, type SetStateAction } from "react";
+import  { type Dispatch, type SetStateAction } from "react";
 
 const Pagintion = ({
   totalpages,
@@ -14,7 +14,7 @@ const Pagintion = ({
   };
   return (
     <div className="flex gap-3">
-      {Array.from({ length: totalpages }).map((ele, index) => (
+      {Array.from({ length: totalpages }).map((_, index) => (
         <button
           onClick={() => handlePageChange(index + 1)}
           className={`border cursor-pointer py-1 px-3 ${currentPage === index + 1 ? "bg-green-400" : ""}`}

@@ -4,7 +4,7 @@ import LayoutWrapper from "../components/common/LayoutWrapper";
 import FallbackUI from "../components/common/FallbackUI";
 import ProductCard from "../components/ProductCard";
 import type { Product } from "../types/product";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 import SearchBar from "../components/SearchBar";
 import Pagintion from "../components/common/Pagintion";
@@ -14,8 +14,7 @@ const ProductListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const debouncedInput = useDebounce(userInput);
-
-  const { data, error, isLoading } = useProductCategories();
+  const {  error, isLoading } = useProductCategories();
 
   const {
     data: productData,

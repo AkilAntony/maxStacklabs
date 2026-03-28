@@ -25,6 +25,8 @@ export const useProductss = ({
       setData(products);
       console.log(products);
     } catch (err: any) {
+
+        setError(err.message)
     } finally {
       setisLoading(false);
     }
